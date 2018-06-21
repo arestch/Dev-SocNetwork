@@ -1,7 +1,7 @@
 const moongose = require("mongoose");
 const Schema = moongose.Schema;
 
-//Create Schema
+// Create Schema
 const UserSchema = new Schema({
   name: {
     type: String,
