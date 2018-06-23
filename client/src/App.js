@@ -1,26 +1,32 @@
 import React, { Component } from "react";
-import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Landing from "./components/layout/Landing";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Route exact path="/" component={Landing} />
-          <div className="container">
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Route exact path="/" component={Landing} />
+            <div className="container">
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </Router>
+        </Router>
+      </Provider>
     );
   }
 }
