@@ -10,6 +10,7 @@ img {
   min-height: 100vh;
   position: relative;
   margin: 0;
+  padding-bottom: 72px;
 }
 
 .landing {
