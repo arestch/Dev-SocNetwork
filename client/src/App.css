@@ -105,3 +105,15 @@ footer {
     transform: scale(1);
   }
 }
+
+.input-group-text {
+  font-size: 20px;
+}
+
+.input-group-text > .fa-youtube {
+  font-size: 16px;
+}
+
+.input-group-text > .fa-twitter {
+  font-size: 18px;
+}
