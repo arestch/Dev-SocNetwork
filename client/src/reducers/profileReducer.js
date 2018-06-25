@@ -4,7 +4,6 @@ import {
   GET_ERRORS,
   CLEAR_CURRENT_PROFILE
 } from "../actions/types";
-import { Z_ASCII } from "zlib";
 
 const initialState = {
   profile: null,
