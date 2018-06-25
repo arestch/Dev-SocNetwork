@@ -7,6 +7,8 @@ import {
   CLEAR_CURRENT_PROFILE
 } from "./types";
 
+import { logoutUser } from "./authActions";
+
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
@@ -50,4 +52,15 @@ export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE
   };
+};
+
+export const deleteAccount = () => dispatch => {
+  if (window.confirm("Are you sure? This can NOT be undone!")) {
+    axios
+      .delete("/api/profile")
+      .then(res => {
+        dispatch(logoutUser());
+      })
+      .catch(err => console.log(err));
+  }
 };
