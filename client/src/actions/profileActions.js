@@ -32,10 +32,8 @@ export const createProfile = (profileData, history) => dispatch => {
   axios
     .post("/api/profile", profileData)
     .then(res => {
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      // Clear errors array if submitted sucessfully
+      clearErrors();
       history.push("/dashboard");
     })
     .catch(err =>
@@ -60,6 +58,14 @@ export const clearCurrentProfile = () => {
   };
 };
 
+// Clear errors array
+export const clearErrors = () => dispatch => {
+  dispatch({
+    type: GET_ERRORS,
+    payload: {}
+  });
+};
+
 export const deleteAccount = () => dispatch => {
   if (window.confirm("Are you sure? This can NOT be undone!")) {
     axios
@@ -69,4 +75,22 @@ export const deleteAccount = () => dispatch => {
       })
       .catch(err => console.log(err));
   }
+};
+
+// Add experience
+export const addExperience = (expData, history) => dispatch => {
+  axios
+    .post("/api/profile/experience", expData)
+    .then(res => {
+      // Clear errors array if submitted sucessfully
+      clearErrors();
+
+      history.push("/dashboard");
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };

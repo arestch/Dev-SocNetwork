@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
-import { TextAreaFieldGroup } from "../common/TextAreaFieldGroup";
 import PropTypes from "prop-types";
+import { addExperience, clearErrors } from "../../actions/profileActions";
 
 class AddExperience extends Component {
   constructor(props) {
@@ -26,8 +26,36 @@ class AddExperience extends Component {
     this.onCheck = this.onCheck.bind(this);
   }
 
-  onSubmit(e) {}
-  onChange(e) {}
+  onSubmit(e) {
+    e.preventDefault();
+
+    const expData = {
+      company: this.state.company,
+      title: this.state.title,
+      location: this.state.location,
+      from: this.state.from,
+      to: this.state.to,
+      current: this.state.current,
+      description: this.state.description
+    };
+    this.props.addExperience(expData, this.props.history);
+  }
+
+  static getDerivedStateFromProps(nextProps, state) {
+    if (nextProps.errors !== state.errors) {
+      return { errors: nextProps.errors };
+    }
+    return {};
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
+  onChange(e) {
+    const value = e.target.value;
+    this.setState({ [e.target.name]: value });
+  }
   onCheck(e) {
     this.setState(prevState => {
       return {
@@ -37,6 +65,7 @@ class AddExperience extends Component {
       };
     });
   }
+
   render() {
     const { errors } = this.state;
 
@@ -45,7 +74,11 @@ class AddExperience extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">
+              <Link
+                to="/dashboard"
+                onClick={this.onGoBack}
+                className="btn btn-light"
+              >
                 Go back
               </Link>
               <h1 className="display-4 text-center">Add Experience</h1>
@@ -127,7 +160,9 @@ class AddExperience extends Component {
 
 AddExperience.propTypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  addExperience: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -135,4 +170,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps)(withRouter(AddExperience));
+export default connect(
+  mapStateToProps,
+  { addExperience, clearErrors }
+)(withRouter(AddExperience));
