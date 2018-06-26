@@ -94,3 +94,20 @@ export const addExperience = (expData, history) => dispatch => {
       })
     );
 };
+
+export const addEducation = (eduData, history) => dispatch => {
+  axios
+    .post("/api/profile/education", eduData)
+    .then(res => {
+      // Clear errors array if submitted sucessfully
+      clearErrors();
+
+      history.push("/dashboard");
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
