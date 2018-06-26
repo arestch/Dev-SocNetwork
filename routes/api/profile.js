@@ -107,6 +107,7 @@ router.post(
     // Get fields
     const profileFields = Object.keys(req.body);
     const newProfile = {};
+    newProfile.user = req.user.id;
     profileFields.map(item => {
       newProfile[item] = req.body[item];
     });
