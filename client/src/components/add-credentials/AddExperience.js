@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
+import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import PropTypes from "prop-types";
 import { addExperience, clearErrors } from "../../actions/profileActions";
 
@@ -59,7 +60,6 @@ class AddExperience extends Component {
   onCheck(e) {
     this.setState(prevState => {
       return {
-        ...prevState,
         current: !prevState.current,
         disabled: !prevState.disabled
       };
@@ -137,12 +137,13 @@ class AddExperience extends Component {
                   />
                   <label htmlFor="current" className="form-check-label" />
                 </div>
-                <TextFieldGroup
+                <TextAreaFieldGroup
                   placeholder="Job Description"
                   name="description"
                   value={this.state.description}
                   onChange={this.onChange}
                   error={errors.description}
+                  info="Tell us about your position"
                 />
                 <input
                   type="submit"
