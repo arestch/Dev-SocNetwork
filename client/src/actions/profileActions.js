@@ -4,7 +4,8 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   GET_ERRORS,
-  CLEAR_CURRENT_PROFILE
+  CLEAR_CURRENT_PROFILE,
+  GET_PROFILES
 } from "./types";
 
 import { logoutUser } from "./authActions";
@@ -28,6 +29,26 @@ export const getCurrentProfile = () => dispatch => {
     );
 };
 
+// Get all profiles
+export const getProfiles = () => dispatch => {
+  dispatch(setProfileLoading());
+  axios
+    .get("/api/profile/all")
+    .then(res => {
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: null
+      })
+    );
+};
+
+// Create Profile
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post("/api/profile", profileData)
