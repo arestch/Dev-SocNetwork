@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import isEmpty from "../../validation/is-empty";
+import PropTypes from "prop-types";
 import isExternal from "is-url-external";
 
 class ProfileHeader extends Component {
@@ -116,5 +117,9 @@ class ProfileHeader extends Component {
     );
   }
 }
+
+ProfileHeader.propTypes = {
+  profile: PropTypes.object.isRequired
+};
 
 export default ProfileHeader;
