@@ -5,7 +5,11 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
-import { createProfile, getCurrentProfile } from "../../actions/profileActions";
+import {
+  createProfile,
+  getCurrentProfile,
+  clearErrors
+} from "../../actions/profileActions";
 import { withRouter } from "react-router-dom";
 import isEmpty from "../../validation/is-empty";
 
@@ -36,8 +40,12 @@ class EditProfile extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount(props) {
+  componentDidMount() {
     this.props.getCurrentProfile();
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors();
   }
 
   onSubmit(e) {
@@ -308,5 +316,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createProfile, getCurrentProfile }
+  { createProfile, getCurrentProfile, clearErrors }
 )(withRouter(EditProfile));
