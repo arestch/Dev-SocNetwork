@@ -38,7 +38,6 @@ class EditProfile extends Component {
 
   componentDidMount(props) {
     this.props.getCurrentProfile();
-    console.log(props);
   }
 
   onSubmit(e) {
@@ -60,13 +59,11 @@ class EditProfile extends Component {
       instagram: this.state.instagram
     };
 
-    console.log(profileData);
     this.props.createProfile(profileData, this.props.history);
   }
 
   static getDerivedStateFromProps(nextProps, state) {
     if (nextProps.errors !== state.errors) {
-      console.log(123);
       return { errors: nextProps.errors };
     }
     if (
@@ -120,6 +117,8 @@ class EditProfile extends Component {
         _id: profile._id
       };
     }
+
+    return {};
   }
 
   onChange(e) {
@@ -285,7 +284,6 @@ class EditProfile extends Component {
                   type="submit"
                   value="submit"
                   className="btn btn-info btn-block mt-4 mb-4"
-                  on
                 />
               </form>
             </div>
