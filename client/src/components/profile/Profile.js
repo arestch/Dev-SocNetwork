@@ -12,7 +12,10 @@ import { getProfileByHandle } from "../../actions/profileActions";
 class Profile extends Component {
   componentDidMount() {
     if (this.props.match.params.handle) {
-      this.props.getProfileByHandle(this.props.match.params.handle);
+      this.props
+        .getProfileByHandle(this.props.match.params.handle)
+        .then(res => console.log(res))
+        .catch(err => this.props.history.push("/not-found"));
     }
   }
   render() {
