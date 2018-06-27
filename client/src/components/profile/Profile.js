@@ -14,7 +14,7 @@ class Profile extends Component {
     if (this.props.match.params.handle) {
       this.props
         .getProfileByHandle(this.props.match.params.handle)
-        .then(res => console.log(res))
+        .then()
         .catch(err => this.props.history.push("/not-found"));
     }
   }
