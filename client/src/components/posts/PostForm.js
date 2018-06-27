@@ -36,10 +36,10 @@ class PostForm extends Component {
       avatar: user.avatar
     };
 
-    this.props.addPost(newPost);
-    if (this.state.errors.text == "") {
-      this.setState({ text: "" });
-    }
+    this.props
+      .addPost(newPost)
+      .then(res => this.setState({ text: "" }))
+      .catch(err => err);
   }
 
   onChange(e) {
@@ -50,7 +50,7 @@ class PostForm extends Component {
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
-          <div className="card-header bg-info text-white">Say Somthing...</div>
+          <div className="card-header bg-info text-white">Say Something...</div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
