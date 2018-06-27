@@ -18,6 +18,7 @@ class Profile extends Component {
         .catch(err => this.props.history.push("/not-found"));
     }
   }
+
   render() {
     const { profile, loading } = this.props.profile;
     let profileContent;

@@ -10,6 +10,10 @@ export const addPost = postData => dispatch => {
         type: ADD_POST,
         payload: res.data
       });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
     })
     .catch(err =>
       dispatch({
