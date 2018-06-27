@@ -23,6 +23,7 @@ import AddExperience from "./components/add-credentials/AddExperience";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
+import Post from "./components/post/Post";
 import NotFound from "./components/not-found/NotFound";
 
 import "./App.css";
@@ -74,6 +75,7 @@ class App extends Component {
                   path="/edit-profile"
                   component={EditProfile}
                 />
+                <PrivateRoute exact path="/post/:id" component={Post} />
                 <PrivateRoute
                   exact
                   path="/add-experience"

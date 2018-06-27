@@ -11,7 +11,6 @@ class Posts extends Component {
     this.props.getPosts();
   }
   render() {
-    console.log(this.props);
     const { posts, loading } = this.props.post;
 
     let postContent;
