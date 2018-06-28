@@ -1,12 +1,12 @@
 # Developer Societal App
 
-## https://ryuoryuo.github.io/React-Advanced-Notes/
+## https://salty-cove-47208.herokuapp.com/
 
 ## App created with:
 
 ### Backend:
 
-Mongoose(MongoDB)\Express(Node.js)\
+Mongoose(MongoDB)\Express(Node.js)
 
 ### Frontend:
 
