@@ -2,7 +2,7 @@
 
 ## https://ryuoryuo.github.io/React-Advanced-Notes/
 
-## App created using:
+## App created with:
 
 ### Backend:
 
